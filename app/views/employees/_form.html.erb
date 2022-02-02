@@ -35,7 +35,7 @@
     <% end %>
 
     <div>
-      <%= form.submit "Refresh form", name: "refresh", data: { dynamic_form_target: "refresh" } %>
+      <%= form.submit "Refresh form", name: "refresh", class: "js-hide", data: { dynamic_form_target: "refresh" } %>
       <%= form.submit %>
     </div>
   <% end %>

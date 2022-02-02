@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="no-js">
   <head>
     <title>DynamicForms</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -7,6 +7,7 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <script>(function (a, b) { a[b] = a[b].replace('no-js', 'has-js') }(document.documentElement, 'className'))</script>
     <%= javascript_importmap_tags %>
   </head>
 
