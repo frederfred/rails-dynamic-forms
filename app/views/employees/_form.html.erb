@@ -1,39 +1,41 @@
-<%= form_with(model: employee) do |form| %>
-  <% if employee.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+<div>
+  <%= form_with(model: employee) do |form| %>
+    <% if employee.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
 
-      <ul>
-        <% employee.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% employee.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <%= form.label :name, style: "display: block" %>
+      <%= form.text_field :name %>
+    </div>
+
+    <div>
+      <%= form.label :department, style: "display: block" %>
+      <%= form.select :department, ["IT", "Product"], { include_blank: "Choose a department"} %>
+    </div>
+
+    <% if employee.department == "IT" %>
+      <div>
+        <%= form.label :title, style: "display: block" %>
+        <%= form.select :title, ["Señorita", "Señor", "Vanlig"] %>
+      </div>
+    <% elsif employee.department == "Product" %>
+      <div>
+        <%= form.label :title, style: "display: block" %>
+        <%= form.select :title, ["Owner", "Underling"] %>
+      </div>
+    <% end %>
+
+    <div>
+      <%= form.submit %>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div>
-    <%= form.label :department, style: "display: block" %>
-    <%= form.select :department, ["IT", "Product"], { include_blank: "Choose a department"} %>
-  </div>
-
-  <% if employee.department == "IT" %>
-    <div>
-      <%= form.label :title, style: "display: block" %>
-      <%= form.select :title, ["Señorita", "Señor", "Vanlig"] %>
-    </div>
-  <% elsif employee.department == "Product" %>
-    <div>
-      <%= form.label :title, style: "display: block" %>
-      <%= form.select :title, ["Owner", "Underling"] %>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
