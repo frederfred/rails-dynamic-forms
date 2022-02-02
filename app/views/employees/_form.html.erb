@@ -18,13 +18,20 @@
 
   <div>
     <%= form.label :department, style: "display: block" %>
-    <%= form.text_field :department %>
+    <%= form.select :department, ["IT", "Product"], { include_blank: "Choose a department"} %>
   </div>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
-  </div>
+  <% if employee.department == "IT" %>
+    <div>
+      <%= form.label :title, style: "display: block" %>
+      <%= form.select :title, ["Señorita", "Señor", "Vanlig"] %>
+    </div>
+  <% elsif employee.department == "Product" %>
+    <div>
+      <%= form.label :title, style: "display: block" %>
+      <%= form.select :title, ["Owner", "Underling"] %>
+    </div>
+  <% end %>
 
   <div>
     <%= form.submit %>
