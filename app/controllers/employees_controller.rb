@@ -24,7 +24,10 @@ class EmployeesController < ApplicationController
     @employee = Employee.new(employee_params)
 
     respond_to do |format|
-      if @employee.save
+      if params[:refresh]
+        @employee.assign_attributes(employee_params)
+        format.html { render :new }
+      elsif @employee.save
         format.html { redirect_to employee_url(@employee), notice: "Employee was successfully created." }
         format.json { render :show, status: :created, location: @employee }
       else
@@ -37,7 +40,10 @@ class EmployeesController < ApplicationController
   # PATCH/PUT /employees/1 or /employees/1.json
   def update
     respond_to do |format|
-      if @employee.update(employee_params)
+      if params[:refresh]
+        @employee.assign_attributes(employee_params)
+        format.html { render :edit }
+      elsif @employee.update(employee_params)
         format.html { redirect_to employee_url(@employee), notice: "Employee was successfully updated." }
         format.json { render :show, status: :ok, location: @employee }
       else
