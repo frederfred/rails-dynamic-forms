@@ -1,4 +1,4 @@
-<div>
+<%= turbo_frame_tag :employee_form, target: "_top", data: { controller: "dynamic-form" } do %>
   <%= form_with(model: employee) do |form| %>
     <% if employee.errors.any? %>
       <div style="color: red">
@@ -19,7 +19,7 @@
 
     <div>
       <%= form.label :department, style: "display: block" %>
-      <%= form.select :department, ["IT", "Product"], { include_blank: "Choose a department"} %>
+      <%= form.select :department, ["IT", "Product"], { include_blank: "Choose a department"}, { data: { action: "dynamic-form#submit" } } %>
     </div>
 
     <% if employee.department == "IT" %>
@@ -35,8 +35,8 @@
     <% end %>
 
     <div>
-      <%= form.submit "Refresh form", name: "refresh" %>
+      <%= form.submit "Refresh form", name: "refresh", data: { dynamic_form_target: "refresh" } %>
       <%= form.submit %>
     </div>
   <% end %>
-</div>
+<% end %>
