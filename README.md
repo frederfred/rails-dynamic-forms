@@ -1,24 +1,21 @@
-# README
+# Rails dynamic forms
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Dynamic forms in Rails with [Turbo](https://turbo.hotwired.dev/). Also works without JavaScript.
 
-Things you may want to cover:
+Relevant files are:
 
-* Ruby version
+```
+app/views/employees/_form.html.erb
+app/controllers/employees_controller.rb (lines 27-29 & 43-45)
+app/javascript/controllers/dynamic_form_controller.js
+```
 
-* System dependencies
+`git log` hopefully gives the full context.
 
-* Configuration
+## Setup and run locally
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+bin/rails db:migrate
+bin/rails server
+open http://localhost:3000
+```
